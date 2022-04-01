@@ -23,5 +23,14 @@
     "@vitejs/plugin-react": "^1.0.7",
     "typescript": "^4.5.4",
     "vite": "^2.9.0"
+  },
+  "prettier": {
+    "trailingComma": "none",
+    "tabWidth": 2,
+    "useTabs": false,
+    "semi": false,
+    "singleQuote": false,
+    "arrowParens": "always",
+    "printWidth": 80
   }
 }

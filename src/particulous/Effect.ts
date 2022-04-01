@@ -1,3 +1,7 @@
-import { Object3D } from "three";
+import { Object3D } from "three"
 
-export class Effect extends Object3D {}
+export class Effect extends Object3D {
+  constructor() {
+    super()
+  }
+}

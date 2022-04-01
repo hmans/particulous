@@ -1,6 +1,6 @@
-import { OrbitControls } from "@react-three/drei";
-import { Canvas } from "@react-three/fiber";
-import { TestParticles } from "./TestParticles";
+import { OrbitControls } from "@react-three/drei"
+import { Canvas } from "@react-three/fiber"
+import { TestParticles } from "./TestParticles"
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
 
       <OrbitControls />
     </Canvas>
-  );
+  )
 }
 
-export default App;
+export default App
