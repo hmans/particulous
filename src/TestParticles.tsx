@@ -1,8 +1,8 @@
+import { useState } from "react";
+import { Effect } from "./particulous/Effect";
+
 export function TestParticles() {
-  return (
-    <mesh>
-      <dodecahedronGeometry />
-      <meshStandardMaterial />
-    </mesh>
-  );
+  const [effect] = useState(() => new Effect());
+
+  return <primitive object={effect} />;
 }
