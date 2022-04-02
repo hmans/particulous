@@ -1,20 +1,6 @@
 import { World } from "miniplex"
-import { BufferAttribute, BufferGeometry, Color, Object3D, Points } from "three"
-
-type TransformComponent = {
-  transform: Object3D
-}
-
-type ColorComponent = {
-  color: Color
-}
-
-type ParticleEntity = TransformComponent & ColorComponent
-
-const transform = (): TransformComponent => ({ transform: new Object3D() })
-const color = (): ColorComponent => ({ color: new Color() })
-
-const defaultParticle = () => ({ ...transform(), ...color() })
+import { BufferAttribute, BufferGeometry, Points } from "three"
+import { defaultParticle, ParticleEntity } from "./particles"
 
 export class Effect extends Points {
   world: World<ParticleEntity> = null!
