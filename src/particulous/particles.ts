@@ -32,8 +32,8 @@ export const velocity = (x = 0, y = 0, z = 0): VelocityComponent => ({
   velocity: new Vector3(x, y, z)
 })
 
-export const acceleration = (x = 0, y = 0, z = 0): AccelerationComponent => ({
-  acceleration: new Vector3(x, y, z)
+export const acceleration = (): AccelerationComponent => ({
+  acceleration: new Vector3()
 })
 
 export const color = (color: ColorRepresentation = "#fff"): ColorComponent => ({
