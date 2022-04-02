@@ -1,4 +1,4 @@
-import { particle } from "../components"
+import { lifetime, particle } from "../components"
 import { defaultEntity, ParticleWorld } from "../entities"
 
 export const emitterSystem = (world: ParticleWorld) => {
@@ -7,7 +7,11 @@ export const emitterSystem = (world: ParticleWorld) => {
   return (dt: number) => {
     for (const { emitter, transform } of entities) {
       /* Spawn a particle */
-      const entity = world.createEntity(defaultEntity(), particle())
+      const entity = world.createEntity(
+        defaultEntity(),
+        particle(),
+        lifetime(2)
+      )
       entity.velocity.randomDirection()
     }
   }

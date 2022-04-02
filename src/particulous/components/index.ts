@@ -1,4 +1,7 @@
 export * from "./acceleration"
+export * from "./age"
+export * from "./emitter"
+export * from "./lifetime"
 export * from "./particle"
 export * from "./transform"
 export * from "./velocity"

@@ -2,6 +2,8 @@ import { World } from "miniplex"
 import { BufferAttribute, BufferGeometry, Points } from "three"
 import { Entity } from "./entities"
 import { emitterSystem, lifetimeSystem, movementSystem } from "./systems"
+import { ageSystem } from "./systems/ageSystem"
+import { flushQueueSystem } from "./systems/flushQueueSystem"
 
 export class ParticleEffect extends Points {
   /* The ECS world this effect is using. */
@@ -15,9 +17,11 @@ export class ParticleEffect extends Points {
   /* A default list of systems we will be executing on every update. This
      is where users can hook in their own logic! */
   systems = [
+    ageSystem(this.world),
     lifetimeSystem(this.world),
     emitterSystem(this.world),
-    movementSystem(this.world)
+    movementSystem(this.world),
+    flushQueueSystem(this.world)
   ]
 
   private positions: Float32Array

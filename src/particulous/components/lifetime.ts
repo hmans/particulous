@@ -2,4 +2,4 @@ export type LifetimeComponent = {
   lifetime: number
 }
 
-export const lifetime = (): LifetimeComponent => ({ lifetime: 0 })
+export const lifetime = (lifetime = 1): LifetimeComponent => ({ lifetime })

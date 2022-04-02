@@ -2,6 +2,9 @@ import { World } from "miniplex"
 import {
   acceleration,
   AccelerationComponent,
+  age,
+  AgeComponent,
+  LifetimeComponent,
   ParticleComponent,
   transform,
   TransformComponent,
@@ -9,21 +12,22 @@ import {
   VelocityComponent
 } from "./components"
 import { EmitterComponent } from "./components/emitter"
-import { lifetime, LifetimeComponent } from "./components/lifetime"
 
-type RequiredComponents = LifetimeComponent &
+type RequiredComponents = AgeComponent &
   TransformComponent &
   VelocityComponent &
   AccelerationComponent
 
-type OptionalComponents = ParticleComponent & EmitterComponent
+type OptionalComponents = ParticleComponent &
+  EmitterComponent &
+  LifetimeComponent
 
 export type Entity = RequiredComponents & Partial<OptionalComponents>
 
 export type ParticleWorld = World<Entity>
 
 export const defaultEntity = (): Entity => ({
-  ...lifetime(),
+  ...age(),
   ...transform(),
   ...velocity(),
   ...acceleration()
