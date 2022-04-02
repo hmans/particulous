@@ -64,7 +64,7 @@ export class ParticleEffect extends Points {
       this.colors[i3 + 1] = particle.color.g
       this.colors[i3 + 2] = particle.color.b
 
-      this.sizes[i] = 1
+      this.sizes[i] = particle.size
 
       this.alphas[i] = 1
     }

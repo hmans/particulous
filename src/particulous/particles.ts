@@ -9,6 +9,10 @@ export type ColorComponent = {
   color: Color
 }
 
+export type SizeComponent = {
+  size: number
+}
+
 export type VelocityComponent = {
   velocity: Vector3
 }
@@ -19,6 +23,7 @@ export type AccelerationComponent = {
 
 export type ParticleEntity = TransformComponent &
   ColorComponent &
+  SizeComponent &
   VelocityComponent &
   AccelerationComponent
 
@@ -36,6 +41,10 @@ export const acceleration = (): AccelerationComponent => ({
   acceleration: new Vector3()
 })
 
+export const size = (size = 1): SizeComponent => ({
+  size
+})
+
 export const color = (color: ColorRepresentation = "#fff"): ColorComponent => ({
   color: new Color(color)
 })
@@ -43,6 +52,7 @@ export const color = (color: ColorRepresentation = "#fff"): ColorComponent => ({
 export const defaultParticle = () => ({
   ...transform(),
   ...color(),
+  ...size(),
   ...velocity(),
   ...acceleration()
 })
