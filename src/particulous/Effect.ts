@@ -1,6 +1,5 @@
 import { World } from "miniplex"
 import { BufferAttribute, BufferGeometry, Color, Object3D, Points } from "three"
-import { ParticleMaterial } from "./ParticleMaterial"
 
 type TransformComponent = {
   transform: Object3D
