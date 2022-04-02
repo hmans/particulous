@@ -8,8 +8,10 @@ import {
   velocity,
   VelocityComponent
 } from "./components"
+import { lifetime, LifetimeComponent } from "./components/lifetime"
 
-type RequiredComponents = TransformComponent &
+type RequiredComponents = LifetimeComponent &
+  TransformComponent &
   VelocityComponent &
   AccelerationComponent
 
@@ -19,7 +21,8 @@ export type Entity = RequiredComponents & Partial<OptionalComponents>
 
 export type ParticleWorld = World<Entity>
 
-export const defaultEntity = () => ({
+export const defaultEntity = (): Entity => ({
+  ...lifetime(),
   ...transform(),
   ...velocity(),
   ...acceleration()
