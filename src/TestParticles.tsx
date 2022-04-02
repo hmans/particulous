@@ -20,7 +20,20 @@ export function TestParticles() {
   const effect = useRef<ParticleEffect>(null!)
 
   useEffect(() => {
-    effect.current.world.createEntity(defaultEntity(), particle("red", 5, 1))
+    for (let i = 0; i < 100; i++) {
+      const entity = effect.current.world.createEntity(
+        defaultEntity(),
+        particle("red")
+      )
+
+      entity.particle!.size = 1 + Math.random() * 3
+
+      entity.particle!.alpha = Math.random()
+
+      entity.transform.position
+        .randomDirection()
+        .multiplyScalar(Math.random() * 5)
+    }
   }, [])
 
   useFrame((_, dt) => effect.current.update(dt))

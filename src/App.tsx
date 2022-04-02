@@ -1,4 +1,4 @@
-import { OrbitControls } from "@react-three/drei"
+import { OrbitControls, PerspectiveCamera } from "@react-three/drei"
 import { Canvas } from "@react-three/fiber"
 import { TestParticles } from "./TestParticles"
 
@@ -11,6 +11,7 @@ function App() {
       <TestParticles />
 
       <OrbitControls />
+      <PerspectiveCamera makeDefault position={[0, 0, 20]} />
     </Canvas>
   )
 }
