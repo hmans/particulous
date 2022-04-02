@@ -1,6 +1,7 @@
 import { World } from "miniplex"
 import { BufferAttribute, BufferGeometry, Points } from "three"
 import { Entity } from "./entities"
+import { ParticleGeometry } from "./ParticleGeometry"
 import {
   ageSystem,
   animationSystem,
@@ -11,6 +12,8 @@ import {
 } from "./systems"
 
 export class ParticleEffect extends Points {
+  geometry: ParticleGeometry
+
   /* The ECS world this effect is using. */
   world = new World<Entity>()
 
@@ -30,29 +33,9 @@ export class ParticleEffect extends Points {
     flushQueueSystem(this.world)
   ]
 
-  private positions: Float32Array
-  private colors: Float32Array
-  private alphas: Float32Array
-  private sizes: Float32Array
-
   constructor(public maxParticles: number = 5000) {
     super()
-
-    /* Set up geometry */
-    this.geometry = new BufferGeometry()
-
-    this.positions = new Float32Array(maxParticles * 3)
-    this.colors = new Float32Array(maxParticles * 3)
-    this.alphas = new Float32Array(maxParticles)
-    this.sizes = new Float32Array(maxParticles)
-
-    this.geometry.setAttribute(
-      "position",
-      new BufferAttribute(this.positions, 3)
-    )
-    this.geometry.setAttribute("color", new BufferAttribute(this.colors, 3))
-    this.geometry.setAttribute("size", new BufferAttribute(this.sizes, 1))
-    this.geometry.setAttribute("alpha", new BufferAttribute(this.alphas, 1))
+    this.geometry = new ParticleGeometry(maxParticles)
   }
 
   update(dt: number) {
@@ -69,17 +52,17 @@ export class ParticleEffect extends Points {
       const entity = entities[i]
       const i3 = i * 3
 
-      this.positions[i3] = entity.transform.position.x
-      this.positions[i3 + 1] = entity.transform.position.y
-      this.positions[i3 + 2] = entity.transform.position.z
+      this.geometry.positions[i3] = entity.transform.position.x
+      this.geometry.positions[i3 + 1] = entity.transform.position.y
+      this.geometry.positions[i3 + 2] = entity.transform.position.z
 
-      this.colors[i3] = entity.particle.color.r
-      this.colors[i3 + 1] = entity.particle.color.g
-      this.colors[i3 + 2] = entity.particle.color.b
+      this.geometry.colors[i3] = entity.particle.color.r
+      this.geometry.colors[i3 + 1] = entity.particle.color.g
+      this.geometry.colors[i3 + 2] = entity.particle.color.b
 
-      this.sizes[i] = entity.particle.size
+      this.geometry.sizes[i] = entity.particle.size
 
-      this.alphas[i] = entity.particle.alpha
+      this.geometry.alphas[i] = entity.particle.alpha
     }
 
     attributes.position.needsUpdate = true
