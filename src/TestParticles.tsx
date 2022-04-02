@@ -27,9 +27,7 @@ export function TestParticles() {
   const effect = useRef<ParticleEffect>(null!)
 
   useEffect(() => {
-    const particleEffect = effect.current
-
-    particleEffect.create(
+    effect.current.create(
       emitter({
         factory: () => ({
           ...particle(),
