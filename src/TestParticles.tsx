@@ -29,8 +29,7 @@ export function TestParticles() {
   useEffect(() => {
     const particleEffect = effect.current
 
-    particleEffect.world.createEntity(
-      defaultEntity(),
+    particleEffect.create(
       emitter({
         factory: () => ({
           ...defaultEntity(),

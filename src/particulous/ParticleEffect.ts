@@ -1,5 +1,5 @@
 import { Points } from "three"
-import { ParticleWorld } from "./entities"
+import { defaultEntity, Entity, ParticleWorld } from "./entities"
 import { ParticleGeometry } from "./ParticleGeometry"
 
 export class ParticleEffect extends Points {
@@ -15,5 +15,9 @@ export class ParticleEffect extends Points {
   update(dt: number) {
     this.geometry.updateSystems(dt)
     this.geometry.updateGeometry()
+  }
+
+  create(...components: Partial<Entity>[]) {
+    return this.geometry.world.createEntity(defaultEntity(), ...components)
   }
 }

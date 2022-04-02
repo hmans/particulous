@@ -1,6 +1,6 @@
 import { Entity } from "../entities"
 
-type EmitterComponentData = {
+export type EmitterComponentData = {
   factory: () => Entity
 }
 
