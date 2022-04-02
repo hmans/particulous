@@ -1,22 +1,16 @@
 import { extend, useFrame } from "@react-three/fiber"
 import { useEffect, useRef } from "react"
+import { NumberKeyframeTrack, Vector3 } from "three"
 import {
   alphaOverLifetime,
   lifetime,
   particle,
   velocity
 } from "./particulous/components"
+import { emitter } from "./particulous/components/emitter"
+import { defaultEntity } from "./particulous/entities"
 import { ParticleEffect } from "./particulous/ParticleEffect"
 import { ParticleMaterial } from "./particulous/ParticleMaterial"
-import { defaultEntity } from "./particulous/entities"
-import { emitter } from "./particulous/components/emitter"
-import {
-  InterpolateLinear,
-  InterpolationModes,
-  LinearInterpolant,
-  NumberKeyframeTrack,
-  Vector3
-} from "three"
 
 extend({ ParticleMaterial, ParticleEffect })
 
