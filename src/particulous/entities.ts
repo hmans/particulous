@@ -8,6 +8,7 @@ import {
   velocity,
   VelocityComponent
 } from "./components"
+import { EmitterComponent } from "./components/emitter"
 import { lifetime, LifetimeComponent } from "./components/lifetime"
 
 type RequiredComponents = LifetimeComponent &
@@ -15,7 +16,7 @@ type RequiredComponents = LifetimeComponent &
   VelocityComponent &
   AccelerationComponent
 
-type OptionalComponents = ParticleComponent
+type OptionalComponents = ParticleComponent & EmitterComponent
 
 export type Entity = RequiredComponents & Partial<OptionalComponents>
 

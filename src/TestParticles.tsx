@@ -4,6 +4,7 @@ import { particle } from "./particulous/components"
 import { ParticleEffect } from "./particulous/ParticleEffect"
 import { ParticleMaterial } from "./particulous/ParticleMaterial"
 import { defaultEntity } from "./particulous/entities"
+import { emitter } from "./particulous/components/emitter"
 
 extend({ ParticleMaterial, ParticleEffect })
 
@@ -20,20 +21,22 @@ export function TestParticles() {
   const effect = useRef<ParticleEffect>(null!)
 
   useEffect(() => {
-    for (let i = 0; i < 100; i++) {
-      const entity = effect.current.world.createEntity(
-        defaultEntity(),
-        particle("red")
-      )
+    effect.current.world.createEntity(defaultEntity(), emitter())
 
-      entity.particle!.size = 1 + Math.random() * 3
+    // for (let i = 0; i < 100; i++) {
+    //   const entity = effect.current.world.createEntity(
+    //     defaultEntity(),
+    //     particle("red")
+    //   )
 
-      entity.particle!.alpha = Math.random()
+    //   entity.particle!.size = 1 + Math.random() * 3
 
-      entity.transform.position
-        .randomDirection()
-        .multiplyScalar(Math.random() * 5)
-    }
+    //   entity.particle!.alpha = Math.random()
+
+    //   entity.transform.position
+    //     .randomDirection()
+    //     .multiplyScalar(Math.random() * 5)
+    // }
   }, [])
 
   useFrame((_, dt) => effect.current.update(dt))
