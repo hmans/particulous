@@ -2,7 +2,7 @@ import { extend, useFrame } from "@react-three/fiber"
 import { useEffect, useState } from "react"
 import { Effect } from "./particulous/Effect"
 import { ParticleMaterial } from "./particulous/ParticleMaterial"
-import { color, defaultParticle, transform } from "./particulous/particles"
+import { color, defaultParticle } from "./particulous/particles"
 
 extend({ ParticleMaterial })
 
