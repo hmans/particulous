@@ -1,4 +1,4 @@
-import { Color, Object3D } from "three"
+import { Color, ColorRepresentation, Object3D } from "three"
 
 export type TransformComponent = {
   transform: Object3D
@@ -14,6 +14,8 @@ export const transform = (): TransformComponent => ({
   transform: new Object3D()
 })
 
-export const color = (): ColorComponent => ({ color: new Color() })
+export const color = (color: ColorRepresentation = "#fff"): ColorComponent => ({
+  color: new Color(color)
+})
 
 export const defaultParticle = () => ({ ...transform(), ...color() })

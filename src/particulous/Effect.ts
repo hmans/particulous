@@ -1,6 +1,6 @@
 import { World } from "miniplex"
 import { BufferAttribute, BufferGeometry, Points } from "three"
-import { defaultParticle, ParticleEntity } from "./particles"
+import { ParticleEntity } from "./particles"
 
 export class Effect extends Points {
   world: World<ParticleEntity> = null!
@@ -34,15 +34,18 @@ export class Effect extends Points {
     this.updateGeometry()
   }
 
-  updateGeometry() {
+  update(dt: number) {
+    this.updateSystems(dt)
+    this.updateGeometry()
+  }
+
+  private updateGeometry() {
     const { attributes } = this.geometry
     const particles = this.world.entities
 
-    console.log(particles)
-
-    for (let i = particles.length; i > 0; i--) {
-      const particle = particles[i - 1]
-
+    /* Positions */
+    for (let i = 0; i < particles.length; i++) {
+      const particle = particles[i]
       const i3 = i * 3
 
       this.positions[i3] = particle.transform.position.x
@@ -67,7 +70,7 @@ export class Effect extends Points {
     this.geometry.computeBoundingSphere()
   }
 
-  update(dt: number) {
+  private updateSystems(dt: number) {
     for (const particle of this.world.entities) {
     }
   }
