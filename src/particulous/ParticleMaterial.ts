@@ -1,12 +1,10 @@
 import { Color, NormalBlending, ShaderMaterial, TextureLoader } from "three"
 
 const vertexShader = `
-// Per-particle attributes
 attribute float size;
 attribute float alpha;
 attribute vec3 color;
 
-// Keep some for the fragment shader
 varying float vAlpha;
 varying vec3 vColor;
 
@@ -28,11 +26,8 @@ varying float vAlpha;
 varying vec3 vColor;
 
 void main() {
-  // Set color and alpha
   gl_FragColor = vec4(vColor, vAlpha);
-
-  // Apply texture
-  gl_FragColor = gl_FragColor * texture2D( pointTexture, gl_PointCoord );
+  gl_FragColor = gl_FragColor * texture2D(pointTexture, gl_PointCoord);
 }
 `
 
