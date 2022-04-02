@@ -21,7 +21,10 @@ export function TestParticles() {
   const effect = useRef<ParticleEffect>(null!)
 
   useEffect(() => {
-    effect.current.world.createEntity(defaultEntity(), emitter())
+    effect.current.world.createEntity(
+      defaultEntity(),
+      emitter({ lifetimeFactory: () => 1 + Math.random() * 0.3 })
+    )
 
     // for (let i = 0; i < 100; i++) {
     //   const entity = effect.current.world.createEntity(

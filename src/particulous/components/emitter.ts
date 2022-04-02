@@ -1,5 +1,13 @@
-export type EmitterComponent = {
-  emitter: {}
+import { Vector3 } from "three"
+
+type EmitterComponentData = {
+  lifetimeFactory?: () => number
 }
 
-export const emitter = (): EmitterComponent => ({ emitter: {} })
+export type EmitterComponent = {
+  emitter: EmitterComponentData
+}
+
+export const emitter = (data: EmitterComponentData = {}): EmitterComponent => ({
+  emitter: data
+})

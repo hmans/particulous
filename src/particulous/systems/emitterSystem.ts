@@ -7,11 +7,12 @@ export const emitterSystem = (world: ParticleWorld) => {
   return (dt: number) => {
     for (const { emitter, transform } of entities) {
       /* Spawn a particle */
-      const entity = world.createEntity(
-        defaultEntity(),
-        particle(),
-        lifetime(2)
-      )
+      const entity = world.createEntity(defaultEntity(), particle())
+
+      if (emitter.lifetimeFactory) {
+        world.addComponent(entity, lifetime(emitter.lifetimeFactory()))
+      }
+
       entity.velocity.randomDirection()
     }
   }
