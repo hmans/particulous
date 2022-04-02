@@ -5,8 +5,9 @@ export const emitterSystem = (world: ParticleWorld) => {
 
   return () => {
     for (const { emitter, transform } of entities) {
-      /* Spawn a particle */
-      const entity = world.createEntity(defaultEntity(), emitter.factory())
+      world.createEntity(defaultEntity(), emitter.factory())
+
+      /* TODO: apply emitter's position, so the particle is spawned relative to it. */
     }
   }
 }
