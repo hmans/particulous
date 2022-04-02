@@ -30,9 +30,6 @@ export class Effect extends Points {
     this.geometry.setAttribute("size", new BufferAttribute(this.sizes, 1))
     this.geometry.setAttribute("alpha", new BufferAttribute(this.alphas, 1))
 
-    /* test */
-    this.world.createEntity(defaultParticle())
-
     /* Run an initial update so we have something to render in the first frame */
     this.updateGeometry()
   }
