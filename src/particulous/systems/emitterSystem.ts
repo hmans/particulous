@@ -1,4 +1,4 @@
-import { ParticleWorld } from "../entities"
+import { defaultEntity, ParticleWorld } from "../entities"
 
 export const emitterSystem = (world: ParticleWorld) => {
   const { entities } = world.archetype("emitter")
@@ -6,7 +6,7 @@ export const emitterSystem = (world: ParticleWorld) => {
   return () => {
     for (const { emitter, transform } of entities) {
       /* Spawn a particle */
-      const entity = world.createEntity(emitter.factory())
+      const entity = world.createEntity(defaultEntity(), emitter.factory())
     }
   }
 }

@@ -1,7 +1,7 @@
 import { Entity } from "../entities"
 
 export type EmitterComponentData = {
-  factory: () => Entity
+  factory: () => Partial<Entity>
 }
 
 export type EmitterComponent = {

@@ -32,7 +32,6 @@ export function TestParticles() {
     particleEffect.create(
       emitter({
         factory: () => ({
-          ...defaultEntity(),
           ...particle(),
           ...velocity(
             new Vector3().randomDirection().multiplyScalar(Math.random())
