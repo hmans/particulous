@@ -1,8 +1,15 @@
+import { extend, useFrame } from "@react-three/fiber"
 import { useState } from "react"
 import { Effect } from "./particulous/Effect"
+import { ParticleMaterial } from "./particulous/ParticleMaterial"
+
+extend({ ParticleMaterial })
 
 export function TestParticles() {
   const [effect] = useState(() => new Effect())
+  const [material] = useState(() => new ParticleMaterial())
 
-  return <primitive object={effect} />
+  useFrame((_, dt) => effect.update(dt))
+
+  return <primitive object={effect} material={material} />
 }
