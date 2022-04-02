@@ -10,7 +10,13 @@ import { ParticleEffect } from "./particulous/ParticleEffect"
 import { ParticleMaterial } from "./particulous/ParticleMaterial"
 import { defaultEntity } from "./particulous/entities"
 import { emitter } from "./particulous/components/emitter"
-import { Vector3 } from "three"
+import {
+  InterpolateLinear,
+  InterpolationModes,
+  LinearInterpolant,
+  NumberKeyframeTrack,
+  Vector3
+} from "three"
 
 extend({ ParticleMaterial, ParticleEffect })
 
@@ -29,6 +35,9 @@ export function TestParticles() {
   useEffect(() => {
     const particleEffect = effect.current
 
+    const kt = new NumberKeyframeTrack("alpha", [0, 1], [1, 0])
+    kt.setInterpolation(InterpolateLinear)
+
     particleEffect.create(
       emitter({
         factory: () => ({
@@ -38,7 +47,7 @@ export function TestParticles() {
             new Vector3().randomDirection().multiplyScalar(Math.random())
           ),
           ...lifetime(2 + Math.random() * 0.5),
-          ...alphaOverLifetime((t) => 1 - t)
+          ...alphaOverLifetime(kt)
         })
       })
     )
