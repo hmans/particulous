@@ -3,15 +3,14 @@ import { BufferAttribute, BufferGeometry, Points } from "three"
 import { Entity } from "./particles"
 import { movementSystem } from "./systems/movementSystem"
 
-type System = (dt: number) => void
-
 export class ParticleEffect extends Points {
   world = new World<Entity>()
-  systems: System[] = null!
 
   archetypes = {
     particles: this.world.archetype("particle")
   }
+
+  systems = [movementSystem(this.world)]
 
   private positions: Float32Array
   private colors: Float32Array
@@ -37,10 +36,6 @@ export class ParticleEffect extends Points {
     this.geometry.setAttribute("color", new BufferAttribute(this.colors, 3))
     this.geometry.setAttribute("size", new BufferAttribute(this.sizes, 1))
     this.geometry.setAttribute("alpha", new BufferAttribute(this.alphas, 1))
-
-    /* Set up systems */
-    this.systems = new Array<System>()
-    this.systems.push(movementSystem(this.world))
   }
 
   update(dt: number) {
