@@ -3,7 +3,7 @@ import { ParticleWorld } from "../particles"
 
 const tmpVec3 = new Vector3()
 
-export const velocitySystem = (world: ParticleWorld) => {
+export const movementSystem = (world: ParticleWorld) => {
   const { entities } = world
 
   return (dt: number) => {

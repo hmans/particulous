@@ -1,7 +1,7 @@
 import { World } from "miniplex"
 import { BufferAttribute, BufferGeometry, Points } from "three"
 import { ParticleEntity } from "./particles"
-import { velocitySystem } from "./systems/velocitySystem"
+import { movementSystem } from "./systems/movementSystem"
 
 type System = (dt: number) => void
 
@@ -36,7 +36,7 @@ export class ParticleEffect extends Points {
 
     /* Set up systems */
     this.systems = new Array<System>()
-    this.systems.push(velocitySystem(this.world))
+    this.systems.push(movementSystem(this.world))
 
     /* Run an initial update so we have something to render in the first frame */
     this.updateGeometry()
