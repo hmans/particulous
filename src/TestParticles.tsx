@@ -3,7 +3,7 @@ import { useEffect, useRef } from "react"
 import { particle } from "./particulous/components"
 import { ParticleEffect } from "./particulous/ParticleEffect"
 import { ParticleMaterial } from "./particulous/ParticleMaterial"
-import { defaultEntity } from "./particulous/particles"
+import { defaultEntity } from "./particulous/entities"
 
 extend({ ParticleMaterial, ParticleEffect })
 

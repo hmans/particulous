@@ -1,5 +1,5 @@
 import { Vector3 } from "three"
-import { ParticleWorld } from "../particles"
+import { ParticleWorld } from "../entities"
 
 const tmpVec3 = new Vector3()
 

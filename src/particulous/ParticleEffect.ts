@@ -1,6 +1,6 @@
 import { World } from "miniplex"
 import { BufferAttribute, BufferGeometry, Points } from "three"
-import { Entity } from "./particles"
+import { Entity } from "./entities"
 import { movementSystem } from "./systems/movementSystem"
 
 export class ParticleEffect extends Points {
