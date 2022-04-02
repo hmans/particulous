@@ -1,20 +1,23 @@
 import { extend, useFrame } from "@react-three/fiber"
-import { useEffect, useState } from "react"
-import { Effect } from "./particulous/Effect"
+import { useEffect, useRef, useState } from "react"
+import { ParticleEffect } from "./particulous/ParticleEffect"
 import { ParticleMaterial } from "./particulous/ParticleMaterial"
-import { acceleration, color, defaultParticle } from "./particulous/particles"
+import { color, defaultParticle } from "./particulous/particles"
 
-extend({ ParticleMaterial })
+extend({ ParticleMaterial, ParticleEffect })
 
 export function TestParticles() {
-  const [effect] = useState(() => new Effect())
-  const [material] = useState(() => new ParticleMaterial())
+  const effect = useRef<ParticleEffect>(null!)
 
   useEffect(() => {
-    effect.world.createEntity(defaultParticle(), color("red"))
+    effect.current.world.createEntity(defaultParticle(), color("red"))
   }, [effect])
 
-  useFrame((_, dt) => effect.update(dt))
+  useFrame((_, dt) => effect.current.update(dt))
 
-  return <primitive object={effect} material={material} />
+  return (
+    <particleEffect ref={effect}>
+      <particleMaterial />
+    </particleEffect>
+  )
 }

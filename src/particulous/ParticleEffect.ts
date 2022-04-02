@@ -5,7 +5,7 @@ import { velocitySystem } from "./systems/velocitySystem"
 
 type System = (dt: number) => void
 
-export class Effect extends Points {
+export class ParticleEffect extends Points {
   world: World<ParticleEntity> = null!
   systems: System[] = null!
 
