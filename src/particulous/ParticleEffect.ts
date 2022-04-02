@@ -3,6 +3,7 @@ import { BufferAttribute, BufferGeometry, Points } from "three"
 import { Entity } from "./entities"
 import {
   ageSystem,
+  animationSystem,
   emitterSystem,
   flushQueueSystem,
   lifetimeSystem,
@@ -23,6 +24,7 @@ export class ParticleEffect extends Points {
   systems = [
     ageSystem(this.world),
     lifetimeSystem(this.world),
+    animationSystem(this.world),
     emitterSystem(this.world),
     movementSystem(this.world),
     flushQueueSystem(this.world)

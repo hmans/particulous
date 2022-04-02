@@ -1,4 +1,4 @@
-import { lifetime, particle } from "../components"
+import { alphaOverLifetime, lifetime, particle } from "../components"
 import { defaultEntity, ParticleWorld } from "../entities"
 
 export const emitterSystem = (world: ParticleWorld) => {
@@ -16,6 +16,12 @@ export const emitterSystem = (world: ParticleWorld) => {
       if (emitter.velocityFactory) {
         entity.velocity.copy(emitter.velocityFactory())
       }
+
+      /* Experimental */
+      world.addComponent(
+        entity,
+        alphaOverLifetime((t) => 1 - t)
+      )
     }
   }
 }

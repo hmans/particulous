@@ -4,6 +4,7 @@ import {
   AccelerationComponent,
   age,
   AgeComponent,
+  AlphaOverLifetimeComponent,
   LifetimeComponent,
   ParticleComponent,
   transform,
@@ -20,7 +21,8 @@ type RequiredComponents = AgeComponent &
 
 type OptionalComponents = ParticleComponent &
   EmitterComponent &
-  LifetimeComponent
+  LifetimeComponent &
+  AlphaOverLifetimeComponent
 
 export type Entity = RequiredComponents & Partial<OptionalComponents>
 

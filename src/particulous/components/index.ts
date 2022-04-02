@@ -1,4 +1,5 @@
 export * from "./acceleration"
+export * from "./alphaOverLifetime"
 export * from "./age"
 export * from "./emitter"
 export * from "./lifetime"
