@@ -1,15 +1,13 @@
-import { LifetimeComponentData } from "./lifetime"
-import { VelocityComponentData } from "./velocity"
+import { Entity } from "../entities"
 
 type EmitterComponentData = {
-  lifetimeFactory?: () => LifetimeComponentData
-  velocityFactory?: () => VelocityComponentData
+  factory: () => Entity
 }
 
 export type EmitterComponent = {
   emitter: EmitterComponentData
 }
 
-export const emitter = (data: EmitterComponentData = {}): EmitterComponent => ({
-  emitter: data
+export const emitter = (emitter: EmitterComponentData): EmitterComponent => ({
+  emitter
 })

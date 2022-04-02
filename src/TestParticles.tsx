@@ -1,6 +1,11 @@
 import { extend, useFrame } from "@react-three/fiber"
 import { useEffect, useRef } from "react"
-import { particle } from "./particulous/components"
+import {
+  alphaOverLifetime,
+  lifetime,
+  particle,
+  velocity
+} from "./particulous/components"
 import { ParticleEffect } from "./particulous/ParticleEffect"
 import { ParticleMaterial } from "./particulous/ParticleMaterial"
 import { defaultEntity } from "./particulous/entities"
@@ -25,26 +30,17 @@ export function TestParticles() {
     effect.current.world.createEntity(
       defaultEntity(),
       emitter({
-        lifetimeFactory: () => 1 + Math.random() * 0.3,
-        velocityFactory: () =>
-          new Vector3().randomDirection().multiplyScalar(Math.random() * 2)
+        factory: () => ({
+          ...defaultEntity(),
+          ...particle(),
+          ...velocity(
+            new Vector3().randomDirection().multiplyScalar(Math.random())
+          ),
+          ...lifetime(2 + Math.random() * 0.5),
+          ...alphaOverLifetime((t) => 1 - t)
+        })
       })
     )
-
-    // for (let i = 0; i < 100; i++) {
-    //   const entity = effect.current.world.createEntity(
-    //     defaultEntity(),
-    //     particle("red")
-    //   )
-
-    //   entity.particle!.size = 1 + Math.random() * 3
-
-    //   entity.particle!.alpha = Math.random()
-
-    //   entity.transform.position
-    //     .randomDirection()
-    //     .multiplyScalar(Math.random() * 5)
-    // }
   }, [])
 
   useFrame((_, dt) => effect.current.update(dt))
