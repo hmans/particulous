@@ -1,7 +1,5 @@
 import { Color, ColorRepresentation, Object3D, Vector3 } from "three"
 
-type Triple<T> = [T, T, T]
-
 export type TransformComponent = {
   transform: Object3D
 }
@@ -22,9 +20,9 @@ export const transform = (): TransformComponent => ({
   transform: new Object3D()
 })
 
-export const velocity = (
-  initial: Triple<number> = [0, 0, 0]
-): VelocityComponent => ({ velocity: new Vector3(...initial) })
+export const velocity = (x = 0, y = 0, z = 0): VelocityComponent => ({
+  velocity: new Vector3(x, y, z)
+})
 
 export const color = (color: ColorRepresentation = "#fff"): ColorComponent => ({
   color: new Color(color)

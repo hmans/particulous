@@ -1,9 +1,13 @@
 import { World } from "miniplex"
 import { BufferAttribute, BufferGeometry, Points } from "three"
 import { ParticleEntity } from "./particles"
+import { velocitySystem } from "./systems/velocitySystem"
+
+type System = (dt: number) => void
 
 export class Effect extends Points {
   world: World<ParticleEntity> = null!
+  systems: System[] = null!
 
   private positions: Float32Array
   private colors: Float32Array
@@ -29,6 +33,10 @@ export class Effect extends Points {
     this.geometry.setAttribute("color", new BufferAttribute(this.colors, 3))
     this.geometry.setAttribute("size", new BufferAttribute(this.sizes, 1))
     this.geometry.setAttribute("alpha", new BufferAttribute(this.alphas, 1))
+
+    /* Set up systems */
+    this.systems = new Array<System>()
+    this.systems.push(velocitySystem(this.world))
 
     /* Run an initial update so we have something to render in the first frame */
     this.updateGeometry()
@@ -71,7 +79,8 @@ export class Effect extends Points {
   }
 
   private updateSystems(dt: number) {
-    for (const particle of this.world.entities) {
+    for (const system of this.systems) {
+      system(dt)
     }
   }
 }
