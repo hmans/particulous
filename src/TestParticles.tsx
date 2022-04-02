@@ -20,7 +20,7 @@ export function TestParticles() {
 
   useEffect(() => {
     effect.current.world.createEntity(defaultParticle(), color("red"))
-  }, [effect])
+  }, [])
 
   useFrame((_, dt) => effect.current.update(dt))
 
