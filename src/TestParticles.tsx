@@ -1,9 +1,9 @@
 import { extend, useFrame } from "@react-three/fiber"
 import { useEffect, useRef } from "react"
-import { color, size } from "./particulous/components"
+import { particle } from "./particulous/components"
 import { ParticleEffect } from "./particulous/ParticleEffect"
 import { ParticleMaterial } from "./particulous/ParticleMaterial"
-import { defaultParticle } from "./particulous/particles"
+import { defaultEntity } from "./particulous/particles"
 
 extend({ ParticleMaterial, ParticleEffect })
 
@@ -20,7 +20,7 @@ export function TestParticles() {
   const effect = useRef<ParticleEffect>(null!)
 
   useEffect(() => {
-    effect.current.world.createEntity(defaultParticle(), color("red"), size(10))
+    effect.current.world.createEntity(defaultEntity(), particle("red", 5, 1))
   }, [])
 
   useFrame((_, dt) => effect.current.update(dt))

@@ -2,28 +2,25 @@ import { World } from "miniplex"
 import {
   acceleration,
   AccelerationComponent,
-  color,
-  ColorComponent,
-  size,
-  SizeComponent,
+  ParticleComponent,
   transform,
   TransformComponent,
   velocity,
   VelocityComponent
 } from "./components"
 
-export type ParticleEntity = TransformComponent &
-  ColorComponent &
-  SizeComponent &
+type RequiredComponents = TransformComponent &
   VelocityComponent &
   AccelerationComponent
 
-export type ParticleWorld = World<ParticleEntity>
+type OptionalComponents = ParticleComponent
 
-export const defaultParticle = () => ({
+export type Entity = RequiredComponents & Partial<OptionalComponents>
+
+export type ParticleWorld = World<Entity>
+
+export const defaultEntity = () => ({
   ...transform(),
-  ...color(),
-  ...size(),
   ...velocity(),
   ...acceleration()
 })

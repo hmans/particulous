@@ -1,13 +1,17 @@
 import { World } from "miniplex"
 import { BufferAttribute, BufferGeometry, Points } from "three"
-import { ParticleEntity } from "./particles"
+import { Entity } from "./particles"
 import { movementSystem } from "./systems/movementSystem"
 
 type System = (dt: number) => void
 
 export class ParticleEffect extends Points {
-  world: World<ParticleEntity> = null!
+  world = new World<Entity>()
   systems: System[] = null!
+
+  archetypes = {
+    particles: this.world.archetype("particle")
+  }
 
   private positions: Float32Array
   private colors: Float32Array
@@ -37,9 +41,6 @@ export class ParticleEffect extends Points {
     /* Set up systems */
     this.systems = new Array<System>()
     this.systems.push(movementSystem(this.world))
-
-    /* Run an initial update so we have something to render in the first frame */
-    this.updateGeometry()
   }
 
   update(dt: number) {
@@ -49,22 +50,22 @@ export class ParticleEffect extends Points {
 
   private updateGeometry() {
     const { attributes } = this.geometry
-    const particles = this.world.entities
+    const { entities } = this.archetypes.particles
 
     /* Positions */
-    for (let i = 0; i < particles.length; i++) {
-      const particle = particles[i]
+    for (let i = 0; i < entities.length; i++) {
+      const entity = entities[i]
       const i3 = i * 3
 
-      this.positions[i3] = particle.transform.position.x
-      this.positions[i3 + 1] = particle.transform.position.y
-      this.positions[i3 + 2] = particle.transform.position.z
+      this.positions[i3] = entity.transform.position.x
+      this.positions[i3 + 1] = entity.transform.position.y
+      this.positions[i3 + 2] = entity.transform.position.z
 
-      this.colors[i3] = particle.color.r
-      this.colors[i3 + 1] = particle.color.g
-      this.colors[i3 + 2] = particle.color.b
+      this.colors[i3] = entity.particle.color.r
+      this.colors[i3 + 1] = entity.particle.color.g
+      this.colors[i3 + 2] = entity.particle.color.b
 
-      this.sizes[i] = particle.size
+      this.sizes[i] = entity.particle.size
 
       this.alphas[i] = 1
     }
