@@ -19,7 +19,6 @@ export class ParticleEffect extends Points {
 
   constructor(public maxParticles: number = 5000) {
     super()
-    this.world = new World()
 
     /* Set up geometry */
     this.geometry = new BufferGeometry()
