@@ -1,3 +1,4 @@
+import { World } from "miniplex"
 import { Color, ColorRepresentation, Object3D, Vector3 } from "three"
 
 export type TransformComponent = {
@@ -15,6 +16,8 @@ export type VelocityComponent = {
 export type ParticleEntity = TransformComponent &
   ColorComponent &
   VelocityComponent
+
+export type ParticleWorld = World<ParticleEntity>
 
 export const transform = (): TransformComponent => ({
   transform: new Object3D()
