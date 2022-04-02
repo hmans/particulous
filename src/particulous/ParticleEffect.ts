@@ -66,7 +66,7 @@ export class ParticleEffect extends Points {
 
       this.sizes[i] = entity.particle.size
 
-      this.alphas[i] = 1
+      this.alphas[i] = entity.particle.alpha
     }
 
     attributes.position.needsUpdate = true
