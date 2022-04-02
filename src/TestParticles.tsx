@@ -8,7 +8,6 @@ import {
   velocity
 } from "./particulous/components"
 import { emitter } from "./particulous/components/emitter"
-import { defaultEntity } from "./particulous/entities"
 import { ParticleEffect } from "./particulous/ParticleEffect"
 import { ParticleMaterial } from "./particulous/ParticleMaterial"
 
