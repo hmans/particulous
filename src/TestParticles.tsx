@@ -1,8 +1,9 @@
 import { extend, useFrame } from "@react-three/fiber"
 import { useEffect, useRef } from "react"
+import { color, size } from "./particulous/components"
 import { ParticleEffect } from "./particulous/ParticleEffect"
 import { ParticleMaterial } from "./particulous/ParticleMaterial"
-import { color, defaultParticle, size } from "./particulous/particles"
+import { defaultParticle } from "./particulous/particles"
 
 extend({ ParticleMaterial, ParticleEffect })
 
