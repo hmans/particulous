@@ -1,7 +1,9 @@
-import { Vector3 } from "three"
+import { LifetimeComponentData } from "./lifetime"
+import { VelocityComponentData } from "./velocity"
 
 type EmitterComponentData = {
-  lifetimeFactory?: () => number
+  lifetimeFactory?: () => LifetimeComponentData
+  velocityFactory?: () => VelocityComponentData
 }
 
 export type EmitterComponent = {

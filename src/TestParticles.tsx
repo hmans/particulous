@@ -5,6 +5,7 @@ import { ParticleEffect } from "./particulous/ParticleEffect"
 import { ParticleMaterial } from "./particulous/ParticleMaterial"
 import { defaultEntity } from "./particulous/entities"
 import { emitter } from "./particulous/components/emitter"
+import { Vector3 } from "three"
 
 extend({ ParticleMaterial, ParticleEffect })
 
@@ -23,7 +24,11 @@ export function TestParticles() {
   useEffect(() => {
     effect.current.world.createEntity(
       defaultEntity(),
-      emitter({ lifetimeFactory: () => 1 + Math.random() * 0.3 })
+      emitter({
+        lifetimeFactory: () => 1 + Math.random() * 0.3,
+        velocityFactory: () =>
+          new Vector3().randomDirection().multiplyScalar(Math.random() * 2)
+      })
     )
 
     // for (let i = 0; i < 100; i++) {

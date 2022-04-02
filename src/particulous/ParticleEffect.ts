@@ -1,9 +1,13 @@
 import { World } from "miniplex"
 import { BufferAttribute, BufferGeometry, Points } from "three"
 import { Entity } from "./entities"
-import { emitterSystem, lifetimeSystem, movementSystem } from "./systems"
-import { ageSystem } from "./systems/ageSystem"
-import { flushQueueSystem } from "./systems/flushQueueSystem"
+import {
+  ageSystem,
+  emitterSystem,
+  flushQueueSystem,
+  lifetimeSystem,
+  movementSystem
+} from "./systems"
 
 export class ParticleEffect extends Points {
   /* The ECS world this effect is using. */

@@ -1,5 +1,9 @@
+export type LifetimeComponentData = number
+
 export type LifetimeComponent = {
-  lifetime: number
+  lifetime: LifetimeComponentData
 }
 
-export const lifetime = (lifetime = 1): LifetimeComponent => ({ lifetime })
+export const lifetime = (
+  lifetime: LifetimeComponentData = 1
+): LifetimeComponent => ({ lifetime })

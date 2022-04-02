@@ -1,7 +1,9 @@
 import { Vector3 } from "three"
 
+export type VelocityComponentData = Vector3
+
 export type VelocityComponent = {
-  velocity: Vector3
+  velocity: VelocityComponentData
 }
 
 export const velocity = (x = 0, y = 0, z = 0): VelocityComponent => ({
