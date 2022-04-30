@@ -12,10 +12,8 @@ void main() {
   vAlpha = alpha;
   vColor = color;
 
-  vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
-
   gl_PointSize = size * 8.0;
-  gl_Position = projectionMatrix * mvPosition;
+  gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
 }
 `
 
@@ -26,8 +24,7 @@ varying float vAlpha;
 varying vec3 vColor;
 
 void main() {
-  gl_FragColor = vec4(vColor, vAlpha);
-  gl_FragColor = gl_FragColor * texture2D(pointTexture, gl_PointCoord);
+  gl_FragColor = vec4(vColor, vAlpha) * texture2D(pointTexture, gl_PointCoord);
 }
 `
 
