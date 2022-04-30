@@ -1,32 +1,7 @@
 import { Color, NormalBlending, ShaderMaterial, TextureLoader } from "three"
 
-const vertexShader = `
-attribute float size;
-attribute float alpha;
-attribute vec3 color;
-
-varying float vAlpha;
-varying vec3 vColor;
-
-void main() {
-  vAlpha = alpha;
-  vColor = color;
-
-  gl_PointSize = size * 8.0;
-  gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-}
-`
-
-const fragmentShader = `
-uniform sampler2D pointTexture;
-
-varying float vAlpha;
-varying vec3 vColor;
-
-void main() {
-  gl_FragColor = vec4(vColor, vAlpha) * texture2D(pointTexture, gl_PointCoord);
-}
-`
+import vertexShader from "./shaders/vertexShader.glsl"
+import fragmentShader from "./shaders/fragmentShader.glsl"
 
 export class ParticleMaterial extends ShaderMaterial {
   constructor() {
